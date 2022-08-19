@@ -7,7 +7,7 @@ router
     .get(`/produtos`, getProdutos)
     .get(`/produtos/:id`, getProduto)
     .post(`/produtos`, postProduto)
-    .patch(`/produtos`, patchProduto)
-    .delete(`/produtos`, deleteProduto)
+    .patch(`/produtos/:id`, patchProduto)
+    .delete(`/produtos/:id`, deleteProduto)
 
 export default router
