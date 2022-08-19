@@ -1,9 +1,19 @@
 import express from "express"
+import mysql from "../config/mysql.js"
 
 const app = express()
 
 function getProdutos(req, res) {
-    return res.status(200).send('GET consumido com sucesso')
+    mysql.getConnection((error, conn) => {
+        if(error) return res.status(500).send({ error : error })
+        conn.query(
+            `SELECT * FROM produtos`,
+            (error, results, fields) => {
+                if(error) {return res.status(500).send({ error: error })}
+                return res.status(200).send({response: results})
+            }
+        )
+    })
 }
 
 function getProduto(req, res) {
