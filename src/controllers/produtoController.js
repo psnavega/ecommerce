@@ -1,4 +1,3 @@
-import express, { response } from "express"
 import mysql from "../config/mysql.js"
 
 function getProdutos(req, res) {

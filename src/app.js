@@ -1,16 +1,16 @@
 import express from "express"
-import router from "./routes/rotaProdutos.js"
 import cors from "cors"
+import routes from "./routes/index.js"
 
 const app = express();
 
 app.use(express.json())
 
-app.use(router);
-
 app.use(cors())
 
-const port = process.env.PORT || 8080;
+routes(app)
+
+const port = process.env.PORT || 8087;
 
 app.listen(port, () => {
     console.log(`Escutando a porta ${port} normalmente`)
