@@ -15,3 +15,7 @@ const port = process.env.PORT || 8087;
 app.listen(port, () => {
     console.log(`Escutando a porta ${port} normalmente`)
 })
+
+export {
+    express
+}

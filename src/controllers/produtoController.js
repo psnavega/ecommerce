@@ -33,10 +33,15 @@ function getProduto(req, res) {
  
 function postProduto(req, res) {
     mysql.getConnection((error, conn) => {
+        console.log(req.file)
         if(error) {return res.status(500).send({ error: error })}
         conn.query(
-            "INSERT INTO produtos (nome, preco) VALUES (?,?);",
-            [req.body.nome, req.body.preco],
+            "INSERT INTO produtos (nome, preco, imagem_produto) VALUES (?,?,?);",
+            [
+                req.body.nome, 
+                req.body.preco,
+                req.file.path
+            ],
             (error, results, fields) => {
                 conn.release()
                 if(error) {return res.status(500).send({ error: error })}
@@ -47,11 +52,16 @@ function postProduto(req, res) {
 }
 
 function patchProduto(req, res) {
-    mysql.getConnection((error, conn) => {
+    mysql.getConnection((error, conn) => { 
         if(error) { return res.status(500).send({ error: error })}
         conn.query(
-            "UPDATE produtos SET nome=?, preco=? WHERE id_produto=?",
-            [req.body.nome, req.body.preco, req.params.id],
+            "UPDATE produtos SET nome=?, preco=?, imagem_produto=? WHERE id_produto=?",
+            [
+                req.body.nome, 
+                req.body.preco,
+                req.file.path,
+                req.params.id
+            ],
             (error, results, fields) => {
                 conn.release()
                 if(error) {return res.status(500).send({ error: error })}

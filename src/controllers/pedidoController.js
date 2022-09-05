@@ -26,7 +26,8 @@ function postPedidos(req, res) {
         conn.query(
             "INSERT INTO pedidos (id_produto, quantidade) VALUES (?,?);",
             [req.body.id_produto, req.body.quantidade],
-            (error, resulnalts, fields) => {
+            (error, results, fields) => {
+                conn.release()
                 if( error ) { return res.status(500).send({ error: error })}
                 return res.status(200).send({ response: results })
             }            
