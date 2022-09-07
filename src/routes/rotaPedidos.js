@@ -4,8 +4,8 @@ import express from "express"
 const router = express.Router()
 
 router
-    .get("/pedidos", getPedidos)
-    .post("/pedidos", postPedidos)
+    .get("/pedidos",    getPedidos)
+    .post("/pedidos",   postPedidos)
     .delete("/pedidos", deletePedido)
 
 export default router
