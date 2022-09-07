@@ -32,7 +32,6 @@ function getProduto(req, res) {
  
  
 function postProduto(req, res) {
-    console.log(req.usuario)
     mysql.getConnection((error, conn) => {
         if(error) {return res.status(500).send({ error: error })}
         conn.query(

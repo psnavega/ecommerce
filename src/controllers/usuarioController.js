@@ -54,14 +54,14 @@ function login(req, res) {
                 conn.release()
                 if(error) {return res.status(500).send({ error: error })}
                 if(results.length < 1 ) { return res.status(404).send({ mensagem: "Falha na autenticação"}) }
-                bcrypt.compare(req.body.senha, results[0]['senha'], (error, results) => {
+                bcrypt.compare(req.body.senha, results[0]['senha'], (error, result) => {
                     if(error) { 
                         return res.status(401).send({ mensagem: "Falha na autenticação"})
                     }
-                    if(results) { 
+                    if(result) { 
                         let token = jwt.sign({
-                            id_usuario: results.id_usuario,
-                            email: results.email,
+                            id_usuario: results[0].id_usuario,
+                            email: results[0].email,
 
                         }, 
                         process.env.JWT_KEY,
