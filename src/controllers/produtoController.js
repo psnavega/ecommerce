@@ -32,8 +32,8 @@ function getProduto(req, res) {
  
  
 function postProduto(req, res) {
+    console.log(req.usuario)
     mysql.getConnection((error, conn) => {
-        console.log(req.file)
         if(error) {return res.status(500).send({ error: error })}
         conn.query(
             "INSERT INTO produtos (nome, preco, imagem_produto) VALUES (?,?,?);",
